@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { useEffect, useRef } from "react";
 
-function TexturedCube() {
+function TexturedCube({ onCubeClick }) {
   const mountRef = useRef(null);
 
   useEffect(() => {
@@ -14,8 +14,6 @@ function TexturedCube() {
     mountRef.current.appendChild(renderer.domElement);
 
     const loader = new THREE.TextureLoader();
-    
-    // VITE FIX: This detects your GitHub repository folder automatically
     const basePath = import.meta.env.BASE_URL;
 
     const materials = [
@@ -30,6 +28,25 @@ function TexturedCube() {
     const cube = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), materials);
     scene.add(cube);
     camera.position.z = 6;
+
+    // CLICK DETECTION LOGIC
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+
+    const onClick = (event) => {
+      // Calculate mouse position
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -((event.clientY - 80) / (window.innerHeight - 80)) * 2 + 1;
+
+      raycaster.setFromCamera(mouse, camera);
+      const intersects = raycaster.intersectObjects(scene.children);
+
+      if (intersects.length > 0) {
+        onCubeClick(); // Trigger Eid Message
+      }
+    };
+
+    window.addEventListener('click', onClick);
 
     const animate = () => {
       requestAnimationFrame(animate);
@@ -47,11 +64,12 @@ function TexturedCube() {
     window.addEventListener('resize', handleResize);
 
     return () => {
+      window.removeEventListener('click', onClick);
       window.removeEventListener('resize', handleResize);
       if (mountRef.current) mountRef.current.removeChild(renderer.domElement);
       renderer.dispose();
     };
-  }, []);
+  }, [onCubeClick]);
 
   return <div ref={mountRef} style={{ width: "100%", height: "100%" }}></div>;
 }
