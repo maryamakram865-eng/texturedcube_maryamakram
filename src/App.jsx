@@ -8,7 +8,7 @@ function App() {
   const [showEid, setShowEid] = useState(false);
 
   // Seat Number Fixed Here
-  const maryamSeatNo = "B23110006XXX"; // ENTER ACTUAL SEAT NO HERE
+  const maryamSeatNo = "B23110006065"; // ENTER ACTUAL SEAT NO HERE
 
   const triggerEid = () => {
     setShowEid(true);
