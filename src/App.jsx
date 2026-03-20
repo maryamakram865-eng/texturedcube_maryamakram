@@ -7,40 +7,35 @@ function App() {
   const [view, setView] = useState("cube");
 
   return (
-    <div className="app-layout">
-      
-      {/* 1. THE MAIN DISPLAY AREA (Now on the LEFT) */}
+    <div className="app-container">
+      {/* TOP BAR NAVIGATION */}
+      <header className="top-bar">
+        <div className="identity-info">
+          <h1>Maryam Akram | B23110006XXXX</h1>
+          <p>UBIT - Computer Graphics Lab</p>
+        </div>
+
+        <nav className="nav-buttons">
+          <button 
+            className="nav-btn btn-simple" 
+            onClick={() => setView("cube")}
+          >
+            ROSE CUBE
+          </button>
+          <button 
+            className="nav-btn btn-textured" 
+            onClick={() => setView("textured")}
+          >
+            TEAL TEXTURE
+          </button>
+        </nav>
+      </header>
+
+      {/* 3D RENDER AREA */}
       <main className="main-stage">
         {view === "cube" && <Cube />}
         {view === "textured" && <TexturedCube />}
       </main>
-
-      {/* 2. THE RIGHT SIDEBAR MENU (Moved here) */}
-      <aside className="sidebar">
-        {/* Updated Identity Header for Maryam Akram */}
-        <div className="identity-header">
-          <h1>Student ID: B23110006065</h1> {/* REPLACE WITH NEW SEAT NO */}
-          <p>Maryam Akram</p>
-          <p>UBIT Karachi</p>
-        </div>
-        
-        <nav className="control-pane">
-          <button 
-            className="control-btn btn-simple" 
-            onClick={() => setView("cube")}
-          >
-            VIRTUAL CUBE (ROSE)
-          </button>
-          
-          <button 
-            className="control-btn btn-textured" 
-            onClick={() => setView("textured")}
-          >
-            TEXTURED CUBE (TEAL)
-          </button>
-        </nav>
-      </aside>
-
     </div>
   );
 }
