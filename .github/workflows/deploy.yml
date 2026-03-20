@@ -19,21 +19,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      
-      # This step handles the folder issue automatically
       - name: Install and Build
         run: |
-          if [ -f "package.json" ]; then
-            npm install
-            npm run build
-          else
-            # Change this 'texturedcube_maryamakram' to your EXACT folder name if it's different
-            cd texturedcube_maryamakram
-            npm install
-            npm run build
-            mv dist ../
-          fi
-          
+          npm install
+          npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
