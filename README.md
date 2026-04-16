@@ -3,8 +3,8 @@
 A 3D interactive application built with **React**, **Three.js**, and **Vite**. This project features a rotatable 3D cube with custom textures representing academic and personal identity.
 
 ## 👤 Student Information
-* **Name:** Omer Sohail
-* **Seat No:** B23110006135
+* **Name:** Maryam Akram
+* **Seat No:** B23110006065
 * **Department:** UBIT, University of Karachi
 
 ## 🚀 Features
